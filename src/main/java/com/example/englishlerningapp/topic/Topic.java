@@ -16,7 +16,7 @@ public class Topic {
     private Long id;
     private String polishesTopic;
     private String englishesTopic;
-    private String GermansTopic;
+    private String germansTopic;
     @OneToMany(mappedBy = "topic")
     private List<Flashcard> flashcards = new ArrayList<>();
     @ManyToOne
