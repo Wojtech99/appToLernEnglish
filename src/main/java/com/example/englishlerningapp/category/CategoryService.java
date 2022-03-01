@@ -1,6 +1,7 @@
 package com.example.englishlerningapp.category;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class CategoryService {
         return categoryMapper.map(savedCategory);
     }
 
-    Optional<CategoryDto> updateCategory(Long CategoryId, CategoryDto category) {
+    Optional<CategoryDto> replaceCategory(Long CategoryId, CategoryDto category) {
         if (!categoryRepository.existsById(CategoryId)){
             return Optional.empty();
         }
@@ -35,5 +36,25 @@ public class CategoryService {
 
     void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Transactional
+    Optional<CategoryDto> updateCategory(Long id, CategoryDto categoryDto) {
+        return categoryRepository.findById(id)
+                .map(target -> setEntityFields(categoryDto, target))
+                .map(categoryMapper::map);
+    }
+
+    private Category setEntityFields(CategoryDto source, Category target) {
+        if (source.getPolishesCategory() != null) {
+            target.setPolishesCategory(source.getPolishesCategory());
+        }
+        if (source.getEnglishesCategory() != null) {
+            target.setEnglishesCategory(source.getEnglishesCategory());
+        }
+        if (source.getGermansCategory() != null) {
+            target.setGermansCategory(source.getGermansCategory());
+        }
+        return target;
     }
 }
