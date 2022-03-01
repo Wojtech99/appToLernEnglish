@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class TopicDto {
+    private Long id;
     private String polishesTopic;
     private String englishesTopic;
     private String GermansTopic;
