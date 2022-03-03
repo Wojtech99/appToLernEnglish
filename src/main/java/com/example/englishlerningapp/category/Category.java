@@ -18,4 +18,8 @@ public class Category {
     private String germansCategory;
     @OneToMany(mappedBy = "category")
     private List<Topic> topics = new ArrayList<>();
+
+    public void addTopic(Topic topic) {
+        topics.add(topic);
+    }
 }

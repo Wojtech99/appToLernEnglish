@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:title="${title}">Fragment</title>
+
+    <link rel="stylesheet" href="../static/main.css" th:href="@{main.css}">
+    <link rel="stylesheet" href="../static/header.css" th:href="@{header.css}">
+</head>
+<body>
+<header th:fragment="header">
+    <ol>
+        <li><a href="#" th:href="@{|/|}">Strona główna</a></li>
+
+        <li><a href="#" th:href="@{|#|}">Test</a></li>
+
+        <li><a>Kategorie</a>
+            <ul>
+                <li><a href="#" th:href="@{|/add_category|}">Dodaj kategorie</a> </li>
+                <li><a href="#" th:href="@{|#|}">Wszystkie kategorie</a></li>
+            </ul>
+        </li>
+
+        <li><a>Tematy</a>
+            <ul>
+                <li><a href="#" th:href="@{|#|}">Dodaj temat</a></li>
+                <li><a href="#" th:href="@{|#|}">Wszystkie tematy</a></li>
+            </ul>
+        </li>
+
+        <li><a>Fiszki</a>
+            <ul>
+                <li><a href="#" th:href="@{|#|}">Dodaj fiszki</a></li>
+                <li><a href="#" th:href="@{|#|}">Wszystkie fiszki</a></li>
+            </ul>
+        </li>
+    </ol>
+    <br>
+</header>
+
+<footer th:fragment="footer">
+    <br>
+    <a>Wszelkie prawa zastrzeżone</a>
+</footer>
+</body>
+</html>

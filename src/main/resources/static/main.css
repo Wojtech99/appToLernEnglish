@@ -1,0 +1,21 @@
+body{
+    background-color: mediumseagreen;
+}
+
+/* table format */
+.tableToShow{
+    border: 1px solid black;
+    border-collapse: collapse;
+    max-width: 1500px;
+    width: 100%;
+}
+.tdToShow{
+    background-color: #0099CC;
+    border: 1px solid black;
+}
+
+/* footer */
+.Footer_text{
+    font-size: medium;
+    font-style: italic;
+}

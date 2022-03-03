@@ -3,6 +3,8 @@ package com.example.englishlerningapp.category;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,5 +58,16 @@ public class CategoryService {
             target.setGermansCategory(source.getGermansCategory());
         }
         return target;
+    }
+
+    Optional<List<CategoryDto>> findAllCategories() {
+        List<CategoryDto> categoryDtoList;
+        categoryDtoList = new ArrayList<>();
+
+        categoryRepository.findAll()
+                .forEach(position -> categoryDtoList.add(categoryMapper.map(position)));
+
+        return Optional.of(categoryDtoList);
+
     }
 }

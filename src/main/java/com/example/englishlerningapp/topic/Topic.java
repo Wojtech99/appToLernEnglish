@@ -20,6 +20,10 @@ public class Topic {
     @OneToMany(mappedBy = "topic")
     private List<Flashcard> flashcards = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "Category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    public void addFlashcard(Flashcard flashcard) {
+        flashcards.add(flashcard);
+    }
 }
