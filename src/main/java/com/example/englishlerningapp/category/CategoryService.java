@@ -42,9 +42,16 @@ public class CategoryService {
 
     @Transactional
     Optional<CategoryDto> updateCategory(Long id, CategoryDto categoryDto) {
-        return categoryRepository.findById(id)
-                .map(target -> setEntityFields(categoryDto, target))
-                .map(categoryMapper::map);
+        if (!categoryRepository.existsById(id)){
+            return Optional.empty();
+        }
+
+        Category category = categoryRepository.findById(id).get();
+        Category categoryToUpdate = setEntityFields(categoryDto, category);
+        categoryToUpdate.setId(id);
+        Category updatedCategory = categoryRepository.save(categoryToUpdate);
+
+        return Optional.of(categoryMapper.map(updatedCategory));
     }
 
     private Category setEntityFields(CategoryDto source, Category target) {
@@ -61,13 +68,21 @@ public class CategoryService {
     }
 
     Optional<List<CategoryDto>> findAllCategories() {
-        List<CategoryDto> categoryDtoList;
-        categoryDtoList = new ArrayList<>();
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
 
         categoryRepository.findAll()
                 .forEach(position -> categoryDtoList.add(categoryMapper.map(position)));
 
         return Optional.of(categoryDtoList);
 
+    }
+
+    Optional<CategoryDto> findCategoryById(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            return Optional.empty();
+        }
+        Category category = categoryRepository.findById(id).get();
+
+        return Optional.of(categoryMapper.map(category));
     }
 }

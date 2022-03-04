@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head th:insert="fragments::head">
-    <title th:text="|Strona Główna|">Angielski dla Ludzi</title>
+    <title>Angielski</title>
 </head>
 <body>
 <header th:insert="fragments::header"></header>
 
-<section>
+<main layout:fragment="content">
     <a>Tutaj prędko nauczysz się Angielskiego</a>
-</section>
+</main>
 
 <footer th:insert="fragments::footer"></footer>
 </body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head th:insert="fragments::head">
+    <title>Angielski</title>
+</head>
+<body>
+<header th:insert="fragments::header"></header>
+
+<main layout:fragment="content">
+    <form method="post" action="/add_new_category" th:object="${category}">
+        <table>
+            <tr>
+                <td>Słowo po polsku:</td>
+                <td><input th:field="*{polishesCategory}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Słowo po angielsku</td>
+                <td><input th:field="*{englishesCategory}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Słowo po niemiecku</td>
+                <td><input th:field="${category.germansCategory}" type="text"></td>
+            </tr>
+        </table>
+        <button type="submit">Zapisz Kategorie</button>
+    </form>
+</main>
+
+<footer th:insert="fragments::footer"></footer>
+</body>
+</html>

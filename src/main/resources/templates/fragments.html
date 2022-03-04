@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title th:title="${title}">Fragment</title>
+    <title>Fragment</title>
 
     <link rel="stylesheet" href="../static/main.css" th:href="@{main.css}">
     <link rel="stylesheet" href="../static/header.css" th:href="@{header.css}">
@@ -17,7 +17,7 @@
         <li><a>Kategorie</a>
             <ul>
                 <li><a href="#" th:href="@{|/add_category|}">Dodaj kategorie</a> </li>
-                <li><a href="#" th:href="@{|#|}">Wszystkie kategorie</a></li>
+                <li><a href="#" th:href="@{|/show_categories|}">Wszystkie kategorie</a></li>
             </ul>
         </li>
 
@@ -38,9 +38,11 @@
     <br>
 </header>
 
+<main layout:fragment="content"></main>
+
 <footer th:fragment="footer">
     <br>
-    <a>Wszelkie prawa zastrzeżone</a>
+    <a class="Footer_text">Wszelkie prawa zastrzeżone</a>
 </footer>
 </body>
 </html>
