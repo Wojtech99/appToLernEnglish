@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
-<head th:insert="fragments::head">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head">
     <title>Angielski</title>
 </head>
 <body>
-<header th:insert="fragments::header"></header>
+<header th:replace="fragments::header"></header>
 
-<main layout:fragment="content">
+<main>
     <a>Tutaj prędko nauczysz się Angielskiego</a>
 </main>
 
-<footer th:insert="fragments::footer"></footer>
+<footer th:replace="fragments::footer"></footer>
 </body>
 </html>

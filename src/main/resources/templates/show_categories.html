@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
-<head th:insert="fragments::head">
-    <title>Angielski</title>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Wszystkie kategorie')">
 </head>
 <body>
-<header th:insert="fragments::header"></header>
+<header th:replace="fragments::header"></header>
 
 <table class="tableToShow" th:remove="all-but-first" th:each="category: ${listOfCategories}">
     <tr>
@@ -26,6 +23,6 @@
     </tr>
 </table>
 
-<footer th:insert="fragments::footer"></footer>
+<footer th:replace="fragments::footer"></footer>
 </body>
 </html>

@@ -1,14 +1,8 @@
 package com.example.englishlerningapp.category;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-
 
 @Controller
 public class CategoryController {
@@ -64,30 +58,20 @@ public class CategoryController {
     }
 
     //Edit category
-    @RequestMapping(
-            path = "/show_categories/edit/{id}",
-            method =  {RequestMethod.GET, RequestMethod.POST})
-    String goToEditCategory(@PathVariable Long id) {
+    @GetMapping("/show_categories/edit/{id}")
+    String goToEditCategory(@PathVariable Long id, Model model) {
         CategoryDto categoryDto = categoryService.findCategoryById(id).get();
-        categoryDto.setId(id);
 
-
-        return "redirect:/edit_category";
-
-    }
-
-    @GetMapping("/edit_category")
-    String editCategorySite(CategoryDto categoryDto, Model model) {
         model.addAttribute("category", categoryDto);
 
         return "edit_category";
-    }
 
+    }
 
     @RequestMapping(
             value = "/show_categories/edit",
             method = {RequestMethod.PATCH, RequestMethod.POST})
-    String editCategory( CategoryDto category) {
+    String editCategory(CategoryDto category) {
         categoryService.updateCategory(category.getId(), category);
 
         return "redirect:/show_categories";
