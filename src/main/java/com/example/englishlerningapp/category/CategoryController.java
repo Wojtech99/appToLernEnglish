@@ -65,8 +65,8 @@ public class CategoryController {
         model.addAttribute("category", categoryDto);
 
         return "edit_category";
-
     }
+
 
     @RequestMapping(
             value = "/show_categories/edit",
