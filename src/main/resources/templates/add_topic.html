@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Dodaj Temat')"></head>
+<body>
+<header th:replace="fragments::header"></header>
+<main>
+    <form method="post" action="#" th:object="${topic}">
+        <table>
+            <tr>
+                <td>Temat po polsku:</td>
+                <td><input th:field="*{polishesTopic}" type="text"></td>
+            </tr>
+        </table>
+    </form>
+</main>
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>
