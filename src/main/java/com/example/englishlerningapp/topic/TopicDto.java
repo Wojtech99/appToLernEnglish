@@ -8,5 +8,8 @@ public class TopicDto {
     private Long id;
     private String polishesTopic;
     private String englishesTopic;
-    private String GermansTopic;
+    private String germansTopic;
+    private Long categoryId;
+    private String categoryName;
+
 }

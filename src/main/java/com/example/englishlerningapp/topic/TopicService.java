@@ -3,6 +3,8 @@ package com.example.englishlerningapp.topic;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,11 +39,16 @@ public class TopicService {
         topicRepository.deleteById(id);
     }
 
-    @Transactional
     Optional<TopicDto> updateTopic(Long id, TopicDto topicDto) {
-        return topicRepository.findById(id)
-                .map(target -> setEntityFields(topicDto, target))
-                .map(updatedTopic -> topicMapper.map(updatedTopic));
+        if (!topicRepository.existsById(id)) {
+            return Optional.empty();
+        }
+
+        Topic topic = topicRepository.findById(id).get();
+        Topic topicToUpdate =  setEntityFields(topicDto, topic);
+        Topic updatedTopic = topicRepository.save(topicToUpdate);
+
+        return Optional.of(topicMapper.map(updatedTopic));
     }
 
     private Topic setEntityFields(TopicDto source, Topic target) {
@@ -55,5 +62,24 @@ public class TopicService {
             target.setGermansTopic(source.getGermansTopic());
         }
         return target;
+    }
+
+    List<TopicDto> takeAllTopics() {
+        List<TopicDto> dtoList = new ArrayList<>();
+
+        topicRepository.findAll().forEach(topic ->
+                dtoList.add(topicMapper.map(topic))
+                );
+
+        return dtoList;
+    }
+
+    Optional<TopicDto> takeTopic(Long id) {
+        if (!topicRepository.existsById(id)){
+            return Optional.empty();
+        }
+
+        Topic topic = topicRepository.findById(id).get();
+        return Optional.of(topicMapper.map(topic));
     }
 }

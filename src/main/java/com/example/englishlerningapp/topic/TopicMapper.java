@@ -21,6 +21,8 @@ public class TopicMapper {
         dto.setPolishesTopic(topic.getPolishesTopic());
         dto.setEnglishesTopic(topic.getEnglishesTopic());
         dto.setGermansTopic(topic.getGermansTopic());
+        dto.setCategoryId(topic.getCategory().getId());
+        dto.setCategoryName(topic.getCategory().getPolishesCategory());
 
         return dto;
     }
