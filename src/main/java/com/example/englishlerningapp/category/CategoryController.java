@@ -13,11 +13,7 @@ public class CategoryController {
     }
 
     @GetMapping("/")
-    String home(Model model) {
-        categoryService.findAllCategories().ifPresent(list ->
-                model.addAttribute("ListOfCategories", list)
-        );
-
+    String home() {
         return "index";
     }
 

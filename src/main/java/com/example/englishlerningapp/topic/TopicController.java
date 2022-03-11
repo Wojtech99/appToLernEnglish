@@ -18,7 +18,7 @@ public class TopicController {
 
     @GetMapping("/showTopics")
     String showTopics(Model model) {
-        List<TopicDto> listOfTopics = new ArrayList<>();
+        List<TopicDto> listOfTopics = topicService.takeAllTopics();
 
         model.addAttribute("listOfTopics", listOfTopics);
 
@@ -26,9 +26,6 @@ public class TopicController {
     }
 
     //add new topic
-    /**
-     * go to add_topic site
-     * */
     @GetMapping("/add_topic")
     String goToAddTopic(Model model) {
         model.addAttribute("topic", new TopicDto());
@@ -43,6 +40,7 @@ public class TopicController {
         return "redirect:/showTopics";
     }
 
+    //delete topic
     @RequestMapping(
             value = "/showTopics/delete/{id}",
             method = {RequestMethod.DELETE, RequestMethod.GET})
@@ -63,5 +61,13 @@ public class TopicController {
         return "edit_topic";
     }
 
+    @RequestMapping(
+            value = "/showTopics/edit",
+            method = {RequestMethod.PATCH, RequestMethod.POST}
+    )
+    String editTopic(TopicDto topicDto) {
+        topicService.updateTopic(topicDto.getId(), topicDto);
 
+        return "redirect:/showTopics";
+    }
 }
