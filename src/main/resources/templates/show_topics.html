@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Pokaż tematy')"></head>
+<body>
+<header th:replace="fragments::header"></header>
+<main>
+    <h2>Wszystkie Tematy</h2>
+    <table class="tableToShow" th:remove="all-but-first">
+        <tr th:each="topic: ${listOfTopics}">
+            <td class="tdToShow"><a href="#"
+                                    th:href="@{|/show_topics/topic?id=${topic.id}|}"
+                                    th:text="|${topic.polishesTopic}/${topic.englishesTopic}|"></a>
+            </td>
+            <td class="tdToShow"><a href="#" th:href="@{|/show_topics/edit/${topic.id}|}" >Edytuj</a></td>
+            <td class="tdToShow"><a href="#" th:href="@{|/show_topics/delete/${topic.id}|}" >Usuń</a></td>
+        </tr>
+    </table>
+</main>
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>

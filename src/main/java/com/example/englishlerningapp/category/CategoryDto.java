@@ -3,7 +3,7 @@ package com.example.englishlerningapp.category;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.OrderBy;
+
 
 @Getter @Setter
 public class CategoryDto {

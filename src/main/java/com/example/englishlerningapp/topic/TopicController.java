@@ -1,19 +1,22 @@
 package com.example.englishlerningapp.topic;
 
+import com.example.englishlerningapp.category.CategoryDto;
+import com.example.englishlerningapp.category.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class TopicController {
 
     private final TopicService topicService;
+    private final CategoryService categoryService;
 
-    public TopicController(TopicService topicService) {
+    public TopicController(TopicService topicService, CategoryService categoryService, CategoryService categoryService1) {
         this.topicService = topicService;
+        this.categoryService = categoryService1;
     }
 
     @GetMapping("/showTopics")
@@ -28,6 +31,9 @@ public class TopicController {
     //add new topic
     @GetMapping("/add_topic")
     String goToAddTopic(Model model) {
+        List<CategoryDto> listOfCategories = categoryService.takeAllCategories().get();
+
+        model.addAttribute("listOfCategories", listOfCategories);
         model.addAttribute("topic", new TopicDto());
 
         return "add_topic";
@@ -37,7 +43,7 @@ public class TopicController {
     String addTopic(TopicDto topicDto) {
         topicService.saveTopic(topicDto);
 
-        return "redirect:/showTopics";
+        return "redirect:/add_topic";
     }
 
     //delete topic
@@ -58,7 +64,7 @@ public class TopicController {
 
         model.addAttribute("topic", topicDto);
 
-        return "edit_topic";
+        return "add_topic";
     }
 
     @RequestMapping(
@@ -66,7 +72,7 @@ public class TopicController {
             method = {RequestMethod.PATCH, RequestMethod.POST}
     )
     String editTopic(TopicDto topicDto) {
-        topicService.updateTopic(topicDto.getId(), topicDto);
+        topicService.updateOrSaveTopic(topicDto);
 
         return "redirect:/showTopics";
     }

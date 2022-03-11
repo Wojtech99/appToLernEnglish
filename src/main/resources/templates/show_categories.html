@@ -4,11 +4,11 @@
 </head>
 <body>
 <header th:replace="fragments::header"></header>
-
+<h2>Wszystkie kategorie</h2>
 <table class="tableToShow" th:remove="all-but-first" th:each="category: ${listOfCategories}">
     <tr>
         <td class="tdToShow"><a href="#"
-           th:href="|category?id=${category.id}|"
+           th:href="@{|/show_categories/category?id=${category.id}|}"
            th:text="|${category.polishesCategory}/${category.englishesCategory}|">
             polski/angielski</a></td>
         <td class="tdToShow"><a href="#" th:href="@{|/show_categories/edit/${category.id}|}">Edytuj</a></td>

@@ -67,7 +67,7 @@ public class CategoryService {
         return target;
     }
 
-    Optional<List<CategoryDto>> findAllCategories() {
+    public Optional<List<CategoryDto>> takeAllCategories() {
         List<CategoryDto> categoryDtoList = new ArrayList<>();
 
         categoryRepository.findAll()

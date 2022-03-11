@@ -10,6 +10,4 @@ public class TopicDto {
     private String englishesTopic;
     private String germansTopic;
     private Long categoryId;
-    private String categoryName;
-
 }

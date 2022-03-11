@@ -1,11 +1,8 @@
 package com.example.englishlerningapp.topic;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TopicService {
@@ -39,12 +36,13 @@ public class TopicService {
         topicRepository.deleteById(id);
     }
 
-    Optional<TopicDto> updateTopic(Long id, TopicDto topicDto) {
-        if (!topicRepository.existsById(id)) {
-            return Optional.empty();
+    Optional<TopicDto> updateOrSaveTopic(TopicDto topicDto) {
+        if (!topicRepository.existsById(topicDto.getId())) {
+            TopicDto savedTopic = saveTopic(topicDto);
+            return Optional.of(savedTopic);
         }
 
-        Topic topic = topicRepository.findById(id).get();
+        Topic topic = topicRepository.findById(topicDto.getId()).get();
         Topic topicToUpdate =  setEntityFields(topicDto, topic);
         Topic updatedTopic = topicRepository.save(topicToUpdate);
 

@@ -36,7 +36,7 @@ public class CategoryController {
     //Show all categories
     @GetMapping("/show_categories")
     String showCategories(Model model) {
-        categoryService.findAllCategories().ifPresent(list ->
+        categoryService.takeAllCategories().ifPresent(list ->
                 model.addAttribute("listOfCategories", list)
         );
 

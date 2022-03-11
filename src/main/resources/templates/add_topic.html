@@ -3,26 +3,35 @@
 <head th:replace="fragments::head(title='Dodaj Temat')"></head>
 <body>
 <header th:replace="fragments::header"></header>
+<h2>Temat</h2>
 <main>
-    <form method="post" action="#" th:object="${topic}">
+    <form method="post" action="/saveNewTopic" th:object="${topic}">
         <table>
+            <tr th:if="${topic.id != null}">
+                <td>Temat id:</td>
+                <td><input th:field="*{id}" type="hidden"></td>
+            </tr>
             <tr>
                 <td>Temat po polsku:</td>
                 <td><input th:field="*{polishesTopic}" type="text"></td>
             </tr>
             <tr>
                 <td>Temat po Angielsku:</td>
-                <td><input th:field="*{polishesTopic}" type="text"></td>
+                <td><input th:field="*{englishesTopic}" type="text"></td>
             </tr>
             <tr>
                 <td>Temat po Niemiecku:</td>
-                <td><input th:field="*{polishesTopic}" type="text"></td>
+                <td><input th:field="*{germansTopic}" type="text"></td>
             </tr>
             <tr>
-                <td>Nazwa kategori</td>
-                <td><input th:field="*{id}" type="text"></td>
+                <td>Nazwa kategori:</td>
+                <td><select th:field="*{categoryId}">
+                    <option value="0">Select Category</option>
+                    <option th:each="category: ${listOfCategories}" th:value="${category.id}" th:text="${category.polishesCategory}"></option>
+                </select></td>
             </tr>
         </table>
+        <button type="submit">Zapisz temat</button>
     </form>
 </main>
 <footer th:replace="fragments::footer"></footer>
