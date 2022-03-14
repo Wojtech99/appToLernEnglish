@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Dodaj fiszki')"></head>
+<body>
+<header th:replace="fragments::header"></header>
+
+<h2>Dodaj fiszki</h2>
+
+<main>
+    <form method="post" action="/addNewFlashcard" th:object="${flashcard}">
+        <table>
+            <tr>
+                <td>Słowo po polsku</td>
+                <td><input th:field="*{polishesWord}"></td>
+            </tr>
+            <tr>
+                <td>Słowo po angielsku</td>
+                <td><input th:field="*{englishesWord}"></td>
+            </tr>
+            <tr>
+                <td>Słowo po niemiecku</td>
+                <td><input th:field="*{germansWord}"></td>
+            </tr>
+            <tr>
+                <td>Nazwa Tematu</td>
+                <td><select th:field="*{topicId}">
+                    <option value="0">Select Topic</option>
+                    <option th:each="topic: ${topics}" th:value="${topic.id}" th:text="${topic.polishesTopic}"></option>
+                </select></td>
+            </tr>
+        </table>
+        <button type="submit">Zapisz fiszkę</button>
+    </form>
+</main>
+
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>

@@ -62,7 +62,7 @@ public class TopicService {
         return target;
     }
 
-    List<TopicDto> takeAllTopics() {
+    public List<TopicDto> takeAllTopics() {
         List<TopicDto> dtoList = new ArrayList<>();
 
         topicRepository.findAll().forEach(topic ->

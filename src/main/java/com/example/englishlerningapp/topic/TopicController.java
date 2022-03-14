@@ -14,9 +14,9 @@ public class TopicController {
     private final TopicService topicService;
     private final CategoryService categoryService;
 
-    public TopicController(TopicService topicService, CategoryService categoryService, CategoryService categoryService1) {
+    public TopicController(TopicService topicService, CategoryService categoryService) {
         this.topicService = topicService;
-        this.categoryService = categoryService1;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/showTopics")

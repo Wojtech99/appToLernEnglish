@@ -37,10 +37,16 @@ public class FlashCardService {
         flashcardRepository.deleteById(id);
     }
 
-    Optional<FlashcardDto> updateFlashcard(Long id, FlashcardDto flashcardDto) {
-        return flashcardRepository.findById(id)
-                .map(target -> setEntityFields(flashcardDto, target))
-                .map(updatedFlashcard -> flashcardMapper.map(updatedFlashcard));
+    Optional<FlashcardDto> updateFlashcard(FlashcardDto flashcardDto) {
+        if(!flashcardRepository.existsById(flashcardDto.getId())) {
+            return Optional.empty();
+        }
+
+        Flashcard flashcard = flashcardRepository.findById(flashcardDto.getId()).get();
+        Flashcard flashcardToUpdate = setEntityFields(flashcardDto, flashcard);
+        Flashcard updatedFlashcard = flashcardRepository.save(flashcardToUpdate);
+
+        return Optional.of(flashcardMapper.map(updatedFlashcard));
     }
 
     private Flashcard setEntityFields(FlashcardDto source, Flashcard target) {
