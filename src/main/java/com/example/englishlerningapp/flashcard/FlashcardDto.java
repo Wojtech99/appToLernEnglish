@@ -9,4 +9,5 @@ public class FlashcardDto {
     private String polishesWord;
     private String englishesWord;
     private String germansWord;
+    private Long TopicId;
 }
