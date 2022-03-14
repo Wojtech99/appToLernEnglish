@@ -5,11 +5,11 @@
 <header th:replace="fragments::header"></header>
 <h2>Temat</h2>
 <main>
-    <form method="post" action="/saveNewTopic" th:object="${topic}">
+    <form method="post" action="/saveOrUpdateTopic" th:object="${topic}">
         <table>
             <tr th:if="${topic.id != null}">
                 <td>Temat id:</td>
-                <td><input th:field="*{id}" type="hidden"></td>
+                <td><input th:field="*{id}" th:text="${topic.id}" type="hidden"></td>
             </tr>
             <tr>
                 <td>Temat po polsku:</td>

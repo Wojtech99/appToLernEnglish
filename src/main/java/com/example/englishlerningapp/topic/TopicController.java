@@ -39,13 +39,6 @@ public class TopicController {
         return "add_topic";
     }
 
-    @PostMapping("/saveNewTopic")
-    String addTopic(TopicDto topicDto) {
-        topicService.saveTopic(topicDto);
-
-        return "redirect:/add_topic";
-    }
-
     //delete topic
     @RequestMapping(
             value = "/showTopics/delete/{id}",
@@ -68,7 +61,7 @@ public class TopicController {
     }
 
     @RequestMapping(
-            value = "/showTopics/edit",
+            value = "/saveOrUpdateTopic",
             method = {RequestMethod.PATCH, RequestMethod.POST}
     )
     String editTopic(TopicDto topicDto) {

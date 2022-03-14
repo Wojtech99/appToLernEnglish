@@ -37,7 +37,7 @@ public class TopicService {
     }
 
     Optional<TopicDto> updateOrSaveTopic(TopicDto topicDto) {
-        if (!topicRepository.existsById(topicDto.getId())) {
+        if (topicDto.getId() == null) {
             TopicDto savedTopic = saveTopic(topicDto);
             return Optional.of(savedTopic);
         }
