@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Edytuj fiszkę')"></head>
+<body>
+<header th:replace="fragments::header"></header>
+
+<h2 th:text="|Edydtuj fiszkę: ${flashcard.polishesWord}|">Edtuj fiszkę</h2>
+
+<main>
+    <form method="post" action="/editFlashcard" th:object="${flashcard}">
+        <table>
+            <tr>
+                <td>Id fiszki:</td>
+                <td><input th:field="*{id}" type="hidden" th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Słowo po polsku</td>
+                <td><input th:field="*{polishesWord}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Słowo po angielsku:</td>
+                <td><input th:field="*{englishesWord}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Słowo po niemiecku</td>
+                <td><input th:field="*{germansWord}" type="text"></td>
+            </tr>
+        </table>
+        <button type="submit">Zapisz</button>
+    </form>
+</main>
+
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>

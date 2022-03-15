@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Wszystkie fiszki')"></head>
+<body>
+<header th:replace="fragments::header"></header>
+
+<h2>Wszystkie fiszki</h2>
+
+<main>
+    <table class="tableToShow">
+        <tr th:each="flashcard: ${flashcardsList}">
+            <td class="tdToShow"><a th:text="|${flashcard.polishesWord}  /   ${flashcard.englishesWord}|"></a></td>
+            <td class="tdToShow"><a th:href="@{|/showFlashcards/edit/${flashcard.id}|}">Edytuj</a></td>
+            <td class="tdToShow"><a th:href="@{|/showFlashcards/delete/${flashcard.id}|}">Usuń</a></td>
+        </tr>
+    </table>
+</main>
+
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>
