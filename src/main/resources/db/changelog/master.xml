@@ -4,5 +4,45 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    
+    <changeSet id="001" author="Wojciech">
+        <createTable tableName="category">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="englishes_category" type="varchar(100)" />
+            <column name="polishes_category" type="varchar(100)" />
+            <column name="germans_category" type="varchar(100)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="002" author="Wojciech">
+        <createTable tableName="flashcard">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="polishes_word" type="varchar(100)" />
+            <column name="englishes_word" type="varchar(100)" />
+            <column name="germans_word" type="varchar(100)" />
+            <column name="date_added" type="date" />
+            <column name="topic_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="003" author="Wojciech">
+        <createTable tableName="topic">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="polishes_topic" type="varchar(100)" />
+            <column name="englishes_topic" type="varchar(100)" />
+            <column name="germans_topic" type="varchar(100)" />
+            <column name="category_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
