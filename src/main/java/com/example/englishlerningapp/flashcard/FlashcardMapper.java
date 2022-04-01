@@ -24,7 +24,7 @@ public class FlashcardMapper {
                 .build();
     }
 
-    FlashcardDto map(Flashcard flashcard) {
+    public FlashcardDto map(Flashcard flashcard) {
         FlashcardDto dto = new FlashcardDto();
 
         dto.setId(flashcard.getId());
