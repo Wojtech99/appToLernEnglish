@@ -16,10 +16,12 @@
             <tr>
                 <td>Słowo po polsku</td>
                 <td><input th:field="*{polishesWord}" type="text"></td>
+                <td><p th:errors="*{polishesWord}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po angielsku:</td>
                 <td><input th:field="*{englishesWord}" type="text"></td>
+                <td><p th:errors="*{englishesWord}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po niemiecku</td>

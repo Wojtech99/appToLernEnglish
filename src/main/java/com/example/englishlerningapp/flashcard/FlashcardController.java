@@ -4,8 +4,10 @@ import com.example.englishlerningapp.topic.TopicDto;
 import com.example.englishlerningapp.topic.TopicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -31,9 +33,12 @@ public class FlashcardController {
 
     //add flashcard
     @PostMapping("/addNewFlashcard")
-    String addFlashcard(FlashcardDto flashcardDto) {
-        flashcardService.saveFlashcard(flashcardDto);
+    String addFlashcard(@Valid @ModelAttribute("flashcard") FlashcardDto flashcardDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "add_flashcard";
+        }
 
+        flashcardService.saveFlashcard(flashcardDto);
         return "redirect:/addFlashcard";
     }
 
@@ -76,9 +81,12 @@ public class FlashcardController {
             value = "/editFlashcard",
             method = {RequestMethod.PATCH, RequestMethod.POST}
     )
-    String editFlashcard(FlashcardDto flashcardDto) {
-        flashcardService.updateFlashcard(flashcardDto);
+    String editFlashcard(@Valid @ModelAttribute("flashcard") FlashcardDto flashcardDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "edit_flashcard";
+        }
 
+        flashcardService.updateFlashcard(flashcardDto);
         return "redirect:/showFlashcards";
     }
 

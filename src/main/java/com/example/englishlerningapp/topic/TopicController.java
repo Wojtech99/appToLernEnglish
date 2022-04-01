@@ -4,8 +4,10 @@ import com.example.englishlerningapp.category.CategoryDto;
 import com.example.englishlerningapp.category.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -64,9 +66,12 @@ public class TopicController {
             value = "/saveOrUpdateTopic",
             method = {RequestMethod.PATCH, RequestMethod.POST}
     )
-    String editTopic(TopicDto topicDto) {
-        topicService.updateOrSaveTopic(topicDto);
+    String editTopic(@Valid @ModelAttribute("topic") TopicDto topicDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "add_topic";
+        }
 
+        topicService.updateOrSaveTopic(topicDto);
         return "redirect:/showTopics";
     }
 }

@@ -12,10 +12,12 @@
             <tr>
                 <td>Słowo po polsku:</td>
                 <td><input th:field="*{polishesCategory}" type="text"></td>
+                <td><p th:errors="*{polishesCategory}" class="error">Tutaj jest Błąd 1</p><td>
             </tr>
             <tr>
                 <td>Słowo po angielsku</td>
                 <td><input th:field="*{englishesCategory}" type="text"></td>
+                <td><p th:errors="*{englishesCategory}" class="error">Tutaj jest Błąd 2</p><td>
             </tr>
             <tr>
                 <td>Słowo po niemiecku</td>

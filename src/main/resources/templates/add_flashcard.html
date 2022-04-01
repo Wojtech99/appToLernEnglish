@@ -12,10 +12,12 @@
             <tr>
                 <td>Słowo po polsku</td>
                 <td><input th:field="*{polishesWord}"></td>
+                <td><p th:errors="*{polishesWord}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po angielsku</td>
                 <td><input th:field="*{englishesWord}"></td>
+                <td><p th:errors="*{englishesWord}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po niemiecku</td>
@@ -27,6 +29,7 @@
                     <option value="0">Select Topic</option>
                     <option th:each="topic: ${topics}" th:value="${topic.id}" th:text="${topic.polishesTopic}"></option>
                 </select></td>
+                <td><p th:errors="*{topicId}" class="error"></p></td>
             </tr>
         </table>
         <button type="submit">Zapisz fiszkę</button>

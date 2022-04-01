@@ -14,15 +14,17 @@
             </tr>
             <tr>
                 <td>Słowo po polsku:</td>
-                <td><input th:field="*{polishesCategory}" th:text="*{polishesCategory}" type="text"></td>
+                <td><input th:field="*{polishesCategory}" type="text"></td>
+                <td><p th:errors="*{polishesCategory}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po angielsku</td>
-                <td><input th:field="*{englishesCategory}" th:text="*{englishesCategory}" type="text"></td>
+                <td><input th:field="*{englishesCategory}" type="text"></td>
+                <td><p th:errors="*{englishesCategory}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Słowo po niemiecku</td>
-                <td><input th:field="${category.germansCategory}" th:text="*{germansCategory}" type="text"></td>
+                <td><input th:field="${category.germansCategory}" type="text"></td>
             </tr>
         </table>
         <button type="submit">Zapisz Kategorie</button>

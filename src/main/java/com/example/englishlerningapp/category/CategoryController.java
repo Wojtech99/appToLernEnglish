@@ -2,7 +2,10 @@ package com.example.englishlerningapp.category;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class CategoryController {
@@ -26,10 +29,13 @@ public class CategoryController {
     }
 
     @PostMapping("/add_new_category")
-    String saveCategory(CategoryDto categoryDto) {
-        categoryService.saveCategory(categoryDto);
-
-        return "redirect:/add_category";
+    String saveCategory(@Valid @ModelAttribute("category") CategoryDto categoryDto, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "add_category";
+        } else {
+            categoryService.saveCategory(categoryDto);
+            return "redirect:/add_category";
+        }
     }
 
 
@@ -67,9 +73,11 @@ public class CategoryController {
     @RequestMapping(
             value = "/show_categories/edit",
             method = {RequestMethod.PATCH, RequestMethod.POST})
-    String editCategory(CategoryDto category) {
+    String editCategory(@Valid @ModelAttribute("category") CategoryDto category, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "edit_category";
+        }
         categoryService.updateCategory(category.getId(), category);
-
         return "redirect:/show_categories";
     }
 }

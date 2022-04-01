@@ -14,10 +14,12 @@
             <tr>
                 <td>Temat po polsku:</td>
                 <td><input th:field="*{polishesTopic}" type="text"></td>
+                <td><p th:errors="*{polishesTopic}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Temat po Angielsku:</td>
                 <td><input th:field="*{englishesTopic}" type="text"></td>
+                <td><p th:errors="*{englishesTopic}" class="error"></p></td>
             </tr>
             <tr>
                 <td>Temat po Niemiecku:</td>
@@ -29,6 +31,7 @@
                     <option value="0">Select Category</option>
                     <option th:each="category: ${listOfCategories}" th:value="${category.id}" th:text="${category.polishesCategory}"></option>
                 </select></td>
+                <td><p th:errors="*{categoryId}" class="error"></p></td>
             </tr>
         </table>
         <button type="submit">Zapisz temat</button>
