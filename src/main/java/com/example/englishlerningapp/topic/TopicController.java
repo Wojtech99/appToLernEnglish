@@ -23,7 +23,7 @@ public class TopicController {
 
     @GetMapping("/showTopics")
     String showTopics(Model model) {
-        List<TopicDto> listOfTopics = topicService.takeAllTopics();
+        List<TopicDto> listOfTopics = topicService.takeAllTopics().get();
 
         model.addAttribute("listOfTopics", listOfTopics);
 

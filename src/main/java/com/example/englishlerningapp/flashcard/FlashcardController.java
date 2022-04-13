@@ -23,7 +23,7 @@ public class FlashcardController {
     //go to adding flashcard site
     @GetMapping("/addFlashcard")
     String addFlashcardPage(Model model) {
-        List<TopicDto> dtoList = topicService.takeAllTopics();
+        List<TopicDto> dtoList = topicService.takeAllTopics().get();
 
         model.addAttribute("flashcard", new FlashcardDto());
         model.addAttribute("topics", dtoList);

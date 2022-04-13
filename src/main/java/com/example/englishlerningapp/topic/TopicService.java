@@ -62,14 +62,14 @@ public class TopicService {
         return target;
     }
 
-    public List<TopicDto> takeAllTopics() {
+    public Optional<List<TopicDto>> takeAllTopics() {
         List<TopicDto> dtoList = new ArrayList<>();
 
         topicRepository.findAll().forEach(topic ->
                 dtoList.add(topicMapper.map(topic))
                 );
 
-        return dtoList;
+        return Optional.of(dtoList);
     }
 
     Optional<TopicDto> takeTopic(Long id) {
